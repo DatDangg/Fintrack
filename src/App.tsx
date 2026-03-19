@@ -1,30 +1,37 @@
 import "./App.css";
 import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
-import { SummaryView } from "./pages/SummaryView";
-import { HistoryView } from "./pages/HistoryView";
-import { CategoryView } from "./pages/CategoryView";
 import { useFinance } from "./lib/supabaseClient";
+import { CategoryView } from "./pages/CategoryView";
+import { HistoryView } from "./pages/HistoryView";
+import { SummaryView } from "./pages/SummaryView";
 
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { AuthScreen } from "./components/AuthScreen";
+import { useAuth } from "./contexts/AuthContext";
 
 function App() {
   const { loading } = useFinance();
+  const { user, isLoading: authLoading } = useAuth();
 
-  if (loading) {
+  if (loading || authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin" />
-          <p className="text-slate-500 font-medium animate-pulse">
-            Đang tải dữ liệu...
-          </p>
+          <p className="text-slate-500 font-medium animate-pulse">Đang tải dữ liệu...</p>
         </div>
       </div>
     );
   }
 
+  if (!user) {
+    return <AuthScreen />;
+  }
+
+
   return (
+
     <div className="bg-[#f8fafc] min-h-[100vh]">
       <Sidebar />
 
@@ -43,6 +50,7 @@ function App() {
         </div>
       </div>
     </div>
+
   );
 }
 

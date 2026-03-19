@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 import { useFinance } from "../lib/supabaseClient";
 import { addTransaction } from "../services/financeService";
-import { TransactionModal } from "./TransactionModal";
+import { TransactionModal } from "./Modal/TransactionModal";
 import { toast } from "react-toastify";
 import type { CategoryInterface } from "../pages/SummaryView";
 

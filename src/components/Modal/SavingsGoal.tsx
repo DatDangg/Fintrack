@@ -1,12 +1,12 @@
 import { Edit2, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
-import { useFinance } from "../lib/supabaseClient";
+import { useFinance } from "../../lib/supabaseClient";
 import {
     addGoal,
     deleteGoal,
     updateGoal
-} from "../services/financeService";
-import { COLORS } from "./Chart/ExpenseChart";
+} from "../../services/financeService";
+import { COLORS } from "../Chart/ExpenseChart";
 import { GoalModal } from "./GoalModals";
 
 export const SavingGoal = () => {

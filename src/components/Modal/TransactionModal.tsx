@@ -1,9 +1,9 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import type { CategoryInterface } from '../pages/SummaryView';
+import type { CategoryInterface } from '../../pages/SummaryView';
 import { Modal } from './Modal';
 import { twMerge } from 'tailwind-merge';
-import { formatNumber } from '../lib/utils';
+import { formatNumber } from '../../lib/utils';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Loader2 } from 'lucide-react';

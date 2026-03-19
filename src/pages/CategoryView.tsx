@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { CategoryModal } from "../components/CategoryModal";
+import { CategoryModal } from "../components/Modal/CategoryModal";
 import { CategorySection } from "../components/CategorySection";
 
 import { useFinance } from "../lib/supabaseClient";

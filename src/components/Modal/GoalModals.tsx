@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from './Modal';
-import { formatNumber } from '../lib/utils';
+import { formatNumber } from '../../lib/utils';
 import { twMerge } from 'tailwind-merge';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';

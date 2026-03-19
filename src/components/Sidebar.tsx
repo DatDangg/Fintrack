@@ -1,7 +1,14 @@
-import { History, LayoutDashboard, Settings, Wallet } from "lucide-react";
+import { History, LayoutDashboard, LogOut, Settings, Wallet } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 export const Sidebar = () => {
+    const {logout} = useAuth()
+
+    const onLogout = async () => {
+        await logout()
+    }
+
     const navClass = ({ isActive }: { isActive: boolean }) =>
         `w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-bold transition-all group cursor-pointer ${isActive
             ? "bg-blue-50 text-blue-600 shadow-sm shadow-blue-500/5"
@@ -38,7 +45,14 @@ export const Sidebar = () => {
                 </nav>
             </div>
 
-            <div className="mt-auto p-6">
+            <div className="mt-auto p-6 space-y-3">
+                <button
+                    onClick={onLogout}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-rose-500 hover:bg-rose-50 rounded-2xl transition-all active:scale-95 cursor-pointer"
+                >
+                    <LogOut size={20} />
+                    Đăng xuất
+                </button>
                 <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100">
                     <p className="text-xs font-bold text-blue-700 uppercase mb-1">
                         Mẹo nhỏ

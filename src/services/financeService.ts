@@ -4,6 +4,9 @@ import type { CategoryInterface } from "../pages/SummaryView";
 /* TRANSACTIONS */
 
 export async function getTransactions() {
+    const { data: userData } = await supabase.auth.getUser();
+    if (!userData.user) throw new Error("Unauthorized");
+
     const { data, error } = await supabase
         .from("transactions")
         .select("*")
