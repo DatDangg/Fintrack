@@ -1,6 +1,5 @@
-import { format, subDays } from "date-fns";
+import { subDays } from "date-fns";
 import { forwardRef, useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const CustomInput = forwardRef<HTMLButtonElement, any>(

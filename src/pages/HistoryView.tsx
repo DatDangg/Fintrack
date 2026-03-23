@@ -1,16 +1,16 @@
 import { format } from "date-fns";
 import { vi } from "date-fns/locale";
-import { Calendar, History, X } from "lucide-react";
+import { History, X } from "lucide-react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { TransactionItem } from "../components/TransactionItem";
 
 
-import { deleteTransaction } from "../services/financeService";
-import { useFinance } from "../lib/supabaseClient";
-import type { TransactionInterface } from "./SummaryView";
 import { toast } from "react-toastify";
 import { ConfirmDialog } from "../components/DialogConfirm";
+import { useFinance } from "../lib/supabaseClient";
+import { deleteTransaction } from "../services/financeService";
+import type { TransactionInterface } from "./SummaryView";
 
 export const HistoryView = () => {
     const { transactions, categories, loading } = useFinance();
