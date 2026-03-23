@@ -6,16 +6,19 @@ import { FinanceProvider } from './provider/FinanceProvider.tsx'
 import { ToastContainer } from 'react-toastify'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext.tsx'
+import { ThemeProvider } from './contexts/ThemeContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <FinanceProvider>
-          <ToastContainer position="top-right" />
-          <App />
-        </FinanceProvider>
-      </BrowserRouter>
+      <ThemeProvider>
+        <BrowserRouter>
+          <FinanceProvider>
+            <ToastContainer position="top-right" />
+            <App />
+          </FinanceProvider>
+        </BrowserRouter>
+      </ThemeProvider>
     </AuthProvider>
   </StrictMode>,
 )

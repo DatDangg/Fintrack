@@ -9,6 +9,8 @@ import { SummaryView } from "./pages/SummaryView";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AuthScreen } from "./components/AuthScreen";
 import { useAuth } from "./contexts/AuthContext";
+import { MobileNav } from "./components/MobileSideBar";
+import { SettingView } from "./pages/SettingView";
 
 function App() {
   const { loading } = useFinance();
@@ -32,10 +34,10 @@ function App() {
 
   return (
 
-    <div className="bg-[#f8fafc] min-h-[100vh]">
+    <div className="bg-[#f8fafc] min-h-[100vh] pb-24 md:pb-8">
       <Sidebar />
-
-      <div className="ml-64">
+      <MobileNav />
+      <div className="lg:ml-64 transition-all duration-300">
         <Header />
 
         <div className="max-w-6xl mx-auto px-4 py-4">
@@ -43,7 +45,7 @@ function App() {
             <Route path="/" element={<SummaryView />} />
             <Route path="/history" element={<HistoryView />} />
             <Route path="/categories" element={<CategoryView />} />
-
+            <Route path="/setting" element={<SettingView />} />
             {/* fallback */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

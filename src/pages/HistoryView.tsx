@@ -80,8 +80,8 @@ export const HistoryView = () => {
         <>
             <div className="space-y-6">
                 {/* FILTER */}
-                <div className="flex flex-row items-center justify-between gap-6 mb-10">
-                    <div className="flex items-center gap-3 p-1.5 bg-slate-200/50 rounded-[20px] w-fit">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+                    <div className="flex justify-center w-full items-center gap-3 p-1.5 bg-slate-200/50 rounded-[20px] md:w-fit">
                         {["all", "income", "expense"].map((type) => (
                             <button
                                 key={type}
@@ -105,9 +105,8 @@ export const HistoryView = () => {
                         ))}
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-4">
+                    <div className="flex flex-wrap justify-center items-center gap-4">
                         <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-2xl border border-slate-200">
-                            <Calendar size={16} className="text-slate-400" />
 
                             <input
                                 type="date"

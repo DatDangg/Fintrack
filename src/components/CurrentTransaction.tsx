@@ -56,7 +56,7 @@ export const CurrentTransaction = ({
                     </button>
                 </div>
                 <div className="space-y-3">
-                    {data.slice(0, 5).map((t: TransactionInterface) => (
+                    {data.slice(0, 3).map((t: TransactionInterface) => (
                         <TransactionItem
                             key={t.id}
                             transaction={t}

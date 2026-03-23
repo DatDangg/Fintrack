@@ -44,7 +44,7 @@ export const TransactionItem = ({
                     </div>
                 </div>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
                 <div className={twMerge(
                     "text-xl font-black tracking-tight",
                     transaction.type === 'income' ? "text-blue-600" : "text-rose-600"

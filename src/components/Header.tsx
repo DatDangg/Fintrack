@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { vi } from "date-fns/locale";
-import { Plus } from "lucide-react";
+import { Plus, Wallet } from "lucide-react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -46,9 +46,15 @@ export const Header = () => {
 
     return (
         <>
-            <header className="sticky top-0 z-30 bg-[#f8fafc]/80 backdrop-blur-xl border-b border-slate-200/60 border-none">
-                <div className="max-w-6xl mx-auto px-4 py-4 h-20 flex items-center justify-between">
-                    <div>
+            <header className="sticky top-0 z-30 bg-[#f8fafc]/80 backdrop-blur-xl border-b border-slate-200/60 border-none lg:bg-transparent lg:border-none">
+                <div className="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
+                    <div className="lg:hidden flex items-center gap-2">
+                        <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <Wallet className="text-white w-5 h-5" />
+                        </div>
+                        <span className="font-bold text-lg tracking-tight">FinTrack</span>
+                    </div>
+                    <div className="hidden lg:block">
                         <h2 className="text-2xl font-bold text-slate-900">
                             {title}
                         </h2>
@@ -65,7 +71,7 @@ export const Header = () => {
                         className="btn-primary flex items-center gap-2"
                     >
                         <Plus size={20} />
-                        <span>Giao dịch mới</span>
+                        <span className="hidden sm:inline">Giao dịch mới</span>
                     </button>
                 </div>
             </header>

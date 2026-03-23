@@ -1,9 +1,9 @@
-import { History, LayoutDashboard, LogOut, Settings, Wallet } from "lucide-react";
+import { History, LayoutDashboard, List, LogOut, Settings, Wallet } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 export const Sidebar = () => {
-    const {logout} = useAuth()
+    const { logout } = useAuth()
 
     const onLogout = async () => {
         await logout()
@@ -16,7 +16,7 @@ export const Sidebar = () => {
         }`;
 
     return (
-        <aside className="fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-slate-200 flex flex-col z-40">
+        <aside className="fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-slate-200 hidden lg:flex flex-col z-40">
             <div className="p-8">
                 <div className="flex items-center gap-3 mb-10">
                     <div className="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/20">
@@ -39,20 +39,17 @@ export const Sidebar = () => {
                     </NavLink>
 
                     <NavLink to="/categories" className={navClass}>
-                        <Settings size={20} />
+                        <List size={20} />
                         <span>Danh mục</span>
+                    </NavLink>
+                    <NavLink to="/setting" className={navClass}>
+                        <Settings size={20} />
+                        <span>Cài đặt</span>
                     </NavLink>
                 </nav>
             </div>
 
             <div className="mt-auto p-6 space-y-3">
-                <button
-                    onClick={onLogout}
-                    className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-rose-500 hover:bg-rose-50 rounded-2xl transition-all active:scale-95 cursor-pointer"
-                >
-                    <LogOut size={20} />
-                    Đăng xuất
-                </button>
                 <div className="p-4 bg-blue-50 rounded-2xl border border-blue-100">
                     <p className="text-xs font-bold text-blue-700 uppercase mb-1">
                         Mẹo nhỏ
@@ -61,6 +58,13 @@ export const Sidebar = () => {
                         Hãy đặt ngân sách cho từng danh mục để kiểm soát chi tiêu tốt hơn!
                     </p>
                 </div>
+                <button
+                    onClick={onLogout}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-rose-500 hover:bg-rose-50 rounded-2xl transition-all active:scale-95 cursor-pointer"
+                >
+                    <LogOut size={20} />
+                    Đăng xuất
+                </button>
             </div>
         </aside>
     );
