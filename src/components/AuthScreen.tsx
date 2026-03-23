@@ -41,7 +41,7 @@ export const AuthScreen: React.FC = () => {
                         <Wallet className="text-white w-8 h-8" />
                     </div>
                     <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">FinTrack</h1>
-                    <p className="text-slate-500 mt-2">Quản lý tài chính cá nhân thông minh</p>
+                    <p className="text-slate-500 mt-2">Quản lý tài chính cá nhân</p>
                 </div>
 
                 <div className="bg-white rounded-[32px] shadow-xl shadow-slate-200/50 p-8 border border-slate-100">

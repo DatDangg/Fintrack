@@ -39,10 +39,8 @@ export const SummaryView = () => {
 
     const filteredTransactions = transactions.filter((t: TransactionInterface) => {
         const date = new Date(t.date);
-        console.log(date)
         return date >= range.startDate && date <= range.endDate;
     });
-    console.log(filteredTransactions)
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -57,11 +55,6 @@ export const SummaryView = () => {
         .reduce((sum: number, t: TransactionInterface) => sum + t.amount, 0);
 
     const balance = totalIncome - totalExpense;
-
-    if (window.matchMedia('(max-width: 767.98px)').matches) {
-        console.log('Small screen (sm or smaller)');
-    }
-
 
     const getChartData = () => {
         const result: any[] = [];
