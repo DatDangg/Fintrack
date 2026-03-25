@@ -5,7 +5,7 @@ import type { CategoryInterface } from '../pages/SummaryView';
 
 interface CategorySectionProps {
     title: string;
-    type: 'income' | 'expense';
+    type: 'income' | 'expense' | 'debt';
     categories: CategoryInterface[];
     onDelete: (id: number) => void;
     onEdit: (cat: CategoryInterface) => void;

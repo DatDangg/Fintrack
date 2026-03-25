@@ -11,7 +11,7 @@ import { DateRangeTabs } from "../components/DateRangeTabs";
 
 export interface TransactionInterface {
     id: number;
-    type: "income" | "expense";
+    type: "income" | "expense" | "debt";
     amount: number;
     date: string;
     category_id: number;
@@ -21,7 +21,7 @@ export interface TransactionInterface {
 export interface CategoryInterface {
     id: number;
     name: string;
-    type: "income" | "expense";
+    type: "income" | "expense" | "debt";
 }
 
 export const SummaryView = () => {

@@ -108,6 +108,17 @@ export const CategoryView = () => {
                         setShowModal(true);
                     }}
                 />
+
+                <CategorySection
+                    title="Danh mục Vay/nợ"
+                    type="income"
+                    categories={(categories || []).filter((c: CategoryInterface) => c.type === "debt")}
+                    onDelete={handleDelete}
+                    onEdit={(category) => {
+                        setSelectedCategory(category);
+                        setShowModal(true);
+                    }}
+                />
             </div>
 
             {showModal && (

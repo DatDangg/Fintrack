@@ -21,17 +21,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    const handleLogoutSideEffect = () => {
+        setUser(null);
+        localStorage.clear();
+    };
+
     // Load user khi reload
     useEffect(() => {
         const getUser = async () => {
-            const { data } = await supabase.auth.getUser();
-            if (data.user) {
-                setUser({
-                    id: data.user.id,
-                    email: data.user.email || "",
-                    name: data.user.user_metadata?.name || ""
-                });
+            const { data, error } = await supabase.auth.getUser();
+            if (error || !data.user) {
+                handleLogoutSideEffect()
+                setIsLoading(false);
+                return;
             }
+
+            setUser({
+                id: data.user.id,
+                email: data.user.email || "",
+                name: data.user.user_metadata?.name || ""
+            });
+
             setIsLoading(false);
         };
 
@@ -46,7 +56,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                     name: session.user.user_metadata?.name || ""
                 });
             } else {
-                setUser(null);
+                handleLogoutSideEffect();
             }
         });
 
