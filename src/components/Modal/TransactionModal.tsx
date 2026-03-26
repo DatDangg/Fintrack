@@ -15,7 +15,7 @@ interface TransactionModalProps {
         amount: string;
         category_id: number | undefined;
         description: string;
-        type: 'income' | 'expense';
+        type: 'income' | 'expense' | 'debt';
         date: string;
     };
     categories: CategoryInterface[];
@@ -81,6 +81,25 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
                         )}
                     >
                         Thu nhập
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            const firstExpense = categories.find(c => c.type === 'debt');
+                            formik.setValues({
+                                ...formik.values,
+                                type: 'debt',
+                                category_id: firstExpense?.id || 0
+                            });
+                        }}
+                        className={twMerge(
+                            "flex-1 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer",
+                            formik.values.type === 'debt'
+                                ? "bg-white text-green-600 shadow-md"
+                                : "text-slate-500 hover:text-slate-700 hover:bg-white/50"
+                        )}
+                    >
+                        Vay nợ
                     </button>
                 </div>
 

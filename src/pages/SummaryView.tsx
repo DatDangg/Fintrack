@@ -1,13 +1,13 @@
 import { format, subDays } from "date-fns";
-import { ArrowDownLeft, ArrowUpRight, Wallet } from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, CircleAlert, HandCoins } from "lucide-react";
 import { CashFlowChart } from "../components/Chart/CashFlowChart";
 import { ExpenseChart } from "../components/Chart/ExpenseChart";
 import { CurrentTransaction } from "../components/CurrentTransaction";
 import { ItemCard } from "../components/ItemCard";
 
-import { useFinance } from "../lib/supabaseClient";
 import { useState } from "react";
 import { DateRangeTabs } from "../components/DateRangeTabs";
+import { useFinance } from "../lib/supabaseClient";
 
 export interface TransactionInterface {
     id: number;
@@ -54,7 +54,19 @@ export const SummaryView = () => {
         .filter((t: TransactionInterface) => t.type === "expense")
         .reduce((sum: number, t: TransactionInterface) => sum + t.amount, 0);
 
-    const balance = totalIncome - totalExpense;
+    const sumByCategory = (categoryId: number) =>
+        filteredTransactions
+            .filter((t: TransactionInterface) => t.type === "debt" && t.category_id === categoryId)
+            .reduce((sum: number, t: TransactionInterface) => sum + t.amount, 0);
+
+    const noId = categories.find((c: CategoryInterface) => c.name === "Vay")?.id;
+    const traNoid = categories.find((c: CategoryInterface) => c.name === "Trả nợ")?.id;
+    const choVayId = categories.find((c: CategoryInterface) => c.name === "Cho vay")?.id;
+    const thuNoid = categories.find((c: CategoryInterface) => c.name === "Thu nợ")?.id;
+
+    const totalNo = sumByCategory(noId) - sumByCategory(traNoid);
+    const totalChoVay = sumByCategory(choVayId) - sumByCategory(thuNoid);
+
 
     const getChartData = () => {
         const result: any[] = [];
@@ -221,7 +233,7 @@ export const SummaryView = () => {
                 <DateRangeTabs setRange={setRange} />
             </div>
             <div className="flex flex-col md:block">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 order-2">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 order-2">
                     <ItemCard
                         icon={<ArrowUpRight size={24} className="text-blue-500" />}
                         title="Thu nhập"
@@ -235,11 +247,16 @@ export const SummaryView = () => {
                         color="red"
                     />
                     <ItemCard
-                        icon={<Wallet size={24} className="text-blue-500" />}
-                        title="Số dư"
-                        amount={balance}
-                        color="blue"
-                        type="balance"
+                        icon={<HandCoins size={24} className="text-green-500" />}
+                        title="Cho vay"
+                        amount={totalChoVay}
+                        color="green"
+                    />
+                    <ItemCard
+                        icon={<CircleAlert size={24} className="text-green-500" />}
+                        title="Nợ"
+                        amount={totalNo}
+                        color="green"
                     />
                 </div>
 

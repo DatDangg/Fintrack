@@ -21,7 +21,7 @@ export const CategorySection = ({
     return (
         <div className="space-y-4">
             <h3 className="font-bold text-lg text-slate-900 flex items-center gap-2">
-                <div className={twMerge("w-2 h-6 rounded-full", type === 'expense' ? "bg-rose-500" : "bg-blue-500")} />
+                <div className={twMerge("w-2 h-6 rounded-full", type === 'expense' ? "bg-rose-500" : type === 'income' ? "bg-blue-500" : "bg-green-500")} />
                 {title}
             </h3>
             <div className="grid grid-cols-1 gap-3">

@@ -116,7 +116,7 @@ export const CategoryView = () => {
                     />
 
                     <CategorySection
-                        title="Danh mục Vay/nợ"
+                        title="Danh mục Vay nợ"
                         type="debt"
                         categories={(categories || []).filter((c: CategoryInterface) => c.type === "debt")}
                         onDelete={handleDelete}
