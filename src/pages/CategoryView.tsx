@@ -14,7 +14,7 @@ import { ConfirmDialog } from "../components/DialogConfirm";
 import { toast } from "react-toastify";
 
 export const CategoryView = () => {
-    const { refresh, categories } = useFinance();
+    const { refresh, categories, isInitialized } = useFinance();
     const [submitting, setSubmitting] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<any>(null);
@@ -86,40 +86,47 @@ export const CategoryView = () => {
                 </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <CategorySection
-                    title="Danh mục Chi tiêu"
-                    type="expense"
-                    categories={(categories || []).filter((c: CategoryInterface) => c.type === "expense")}
-                    onDelete={handleDelete}
-                    onEdit={(category) => {
-                        setSelectedCategory(category);
-                        setShowModal(true);
-                    }}
-                />
+            {!isInitialized ? (
+                <div className="flex flex-col items-center justify-center py-20 gap-3 text-slate-400">
+                    <div className="w-8 h-8 border-2 border-blue-200 border-t-blue-500 rounded-full animate-spin" />
+                    <p className="text-sm font-medium">Đang khởi tạo danh mục...</p>
+                </div>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <CategorySection
+                        title="Danh mục Chi tiêu"
+                        type="expense"
+                        categories={(categories || []).filter((c: CategoryInterface) => c.type === "expense")}
+                        onDelete={handleDelete}
+                        onEdit={(category) => {
+                            setSelectedCategory(category);
+                            setShowModal(true);
+                        }}
+                    />
 
-                <CategorySection
-                    title="Danh mục Thu nhập"
-                    type="income"
-                    categories={(categories || []).filter((c: CategoryInterface) => c.type === "income")}
-                    onDelete={handleDelete}
-                    onEdit={(category) => {
-                        setSelectedCategory(category);
-                        setShowModal(true);
-                    }}
-                />
+                    <CategorySection
+                        title="Danh mục Thu nhập"
+                        type="income"
+                        categories={(categories || []).filter((c: CategoryInterface) => c.type === "income")}
+                        onDelete={handleDelete}
+                        onEdit={(category) => {
+                            setSelectedCategory(category);
+                            setShowModal(true);
+                        }}
+                    />
 
-                <CategorySection
-                    title="Danh mục Vay/nợ"
-                    type="income"
-                    categories={(categories || []).filter((c: CategoryInterface) => c.type === "debt")}
-                    onDelete={handleDelete}
-                    onEdit={(category) => {
-                        setSelectedCategory(category);
-                        setShowModal(true);
-                    }}
-                />
-            </div>
+                    <CategorySection
+                        title="Danh mục Vay/nợ"
+                        type="debt"
+                        categories={(categories || []).filter((c: CategoryInterface) => c.type === "debt")}
+                        onDelete={handleDelete}
+                        onEdit={(category) => {
+                            setSelectedCategory(category);
+                            setShowModal(true);
+                        }}
+                    />
+                </div>
+            )}
 
             {showModal && (
                 <CategoryModal

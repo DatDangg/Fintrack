@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { supabase } from "../lib/supabaseClient";
 
 interface User {
@@ -20,6 +20,9 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    // Flag để chặn onAuthStateChange set user trong lúc register đang chờ trigger
+    const isRegisteringRef = useRef(false);
 
     const handleLogoutSideEffect = () => {
         setUser(null);
@@ -49,6 +52,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         // Listen auth change
         const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+            // Bỏ qua nếu đang register — register() sẽ tự setUser sau khi trigger xong
+            if (isRegisteringRef.current) return;
+
             if (session?.user) {
                 setUser({
                     id: session.user.id,
@@ -80,28 +86,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 name: data.user.user_metadata?.name || ""
             });
         }
-
     };
 
     const register = async (name: string, email: string, password: string) => {
-        const { error, data } = await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-                data: {
-                    name
-                }
-            }
-        });
-        if (data.user) {
-            setUser({
-                id: data.user.id,
-                email: data.user.email || "",
-                name: data.user.user_metadata?.name || ""
-            });
-        }
+        isRegisteringRef.current = true;
 
-        if (error) throw error;
+        try {
+            const { error, data } = await supabase.auth.signUp({
+                email,
+                password,
+                options: { data: { name } },
+            });
+
+            if (error) throw error;
+
+            // Set user ngay — navigate vào app ngay lập tức, không chờ trigger
+            // useFinanceData sẽ tự refresh khi realtime báo categories đã sẵn sàng
+            if (data.user) {
+                setUser({
+                    id: data.user.id,
+                    email: data.user.email || "",
+                    name: data.user.user_metadata?.name || "",
+                });
+            }
+        } finally {
+            isRegisteringRef.current = false;
+        }
     };
 
     const logout = async () => {
