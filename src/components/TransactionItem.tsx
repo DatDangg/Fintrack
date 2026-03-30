@@ -45,10 +45,10 @@ export const TransactionItem = ({
                             {format(transaction.date, 'dd/MM/yyyy')}
                         </span>
                         {transaction.description && (
-                            <>
+                            <div className='hidden md:block'>
                                 <span className="w-1 h-1 bg-slate-200 rounded-full" />
                                 <span className="truncate max-w-[120px]">{transaction.description}</span>
-                            </>
+                            </div>
                         )}
                     </div>
                 </div>
