@@ -40,7 +40,7 @@ export const SummaryView = () => {
     const filteredTransactions = transactions.filter((t: TransactionInterface) => {
         const date = new Date(t.date);
         const start_ = new Date(range.startDate.getFullYear(), range.startDate.getMonth(), range.startDate.getDate());
-        const end_ = new Date(range.endDate.getFullYear(), range.endDate.getMonth(), range.endDate.getDate());
+        const end_ = new Date(range.endDate.getFullYear(), range.endDate.getMonth(), range.endDate.getDate(), 23, 59, 59);
 
         return date >= start_ && date <= end_;
     });

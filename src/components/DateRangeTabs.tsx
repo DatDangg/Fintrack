@@ -53,10 +53,12 @@ export const DateRangeTabs = ({ setRange }: any) => {
 
     useEffect(() => {
         if (chartPeriod === "custom" && startDate && endDate) {
+            const start_ = new Date(startDate);
+            const end_ = new Date(endDate);
             setRange({
                 type: "custom",
-                startDate: new Date(startDate),
-                endDate: new Date(endDate)
+                startDate: new Date(start_.getFullYear(), start_.getMonth(), start_.getDate()),
+                endDate: new Date(end_.getFullYear(), end_.getMonth(), end_.getDate(), 23, 59, 59)
             });
         }
     }, [startDate, endDate, chartPeriod]);
