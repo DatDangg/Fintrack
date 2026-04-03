@@ -1,11 +1,12 @@
 import { format, subDays } from "date-fns";
-import { ArrowDownLeft, ArrowUpRight, CircleAlert, HandCoins } from "lucide-react";
+import { ArrowDownLeft, ArrowLeftRight, ArrowUpRight, CircleAlert, HandCoins } from "lucide-react";
 import { CashFlowChart } from "../components/Chart/CashFlowChart";
 import { ExpenseChart } from "../components/Chart/ExpenseChart";
 import { CurrentTransaction } from "../components/CurrentTransaction";
 import { ItemCard } from "../components/ItemCard";
 
 import { useState } from "react";
+import { CashSummaryChart } from "../components/Chart/CashSummaryChart";
 import { DateRangeTabs } from "../components/DateRangeTabs";
 import { useFinance } from "../lib/supabaseClient";
 
@@ -26,7 +27,7 @@ export interface CategoryInterface {
 
 export const SummaryView = () => {
     const { transactions, categories, loading, error } = useFinance();
-
+    const [isCashFlow, setIsCashFlow] = useState(true);
     const [range, setRange] = useState<{
         type: "week" | "month" | "year" | "custom";
         startDate: Date;
@@ -58,7 +59,7 @@ export const SummaryView = () => {
         .reduce((sum: number, t: TransactionInterface) => sum + t.amount, 0);
 
     const sumByCategory = (categoryId: number) =>
-        filteredTransactions
+        transactions
             .filter((t: TransactionInterface) => t.type === "debt" && t.category_id === categoryId)
             .reduce((sum: number, t: TransactionInterface) => sum + t.amount, 0);
 
@@ -263,8 +264,9 @@ export const SummaryView = () => {
                     />
                 </div>
 
-                <div className="md:pt-8 md:pb-0 pb-8 pt-2 order-1">
-                    <CashFlowChart data={chartData} />
+                <div className="md:pt-8 md:pb-0 pb-8 pt-2 order-1 relative">
+                    <ArrowLeftRight size={24} className="text-gray-500 mb-2 absolute top-16 right-8 cursor-pointer" onClick={() => setIsCashFlow(prev => !prev)} />
+                    {isCashFlow ? <CashFlowChart data={chartData} /> : <CashSummaryChart data={chartData} />}
                 </div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">

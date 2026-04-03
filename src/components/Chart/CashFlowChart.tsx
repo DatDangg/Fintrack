@@ -15,34 +15,10 @@ export const CashFlowChart = ({
 
     return (
         <div className="bg-white border border-slate-200/60 shadow-premium rounded-[24px] transition-all duration-300 p-8">
-            <div className="flex items-center justify-between md:mb-8 mb-4">
-                <div>
+            <div className="md:mb-8 mb-4">
                     <h3 className="font-bold text-lg text-slate-900">Biểu đồ dòng tiền</h3>
-                    <p className="text-xs text-slate-400">Trực quan hóa thu chi trong giai đoạn đã chọn</p>
-                </div>
-                <div className="hidden md:flex items-center gap-6 mb-6">
-                    <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-blue-500" />
-                        <span className="text-xs font-medium text-slate-500">Thu nhập</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-rose-500" />
-                        <span className="text-xs font-medium text-slate-500">Chi tiêu</span>
-                    </div>
-                </div>
+                    <p className="text-xs text-slate-400">Trực quan hóa thu chi</p>
             </div>
-
-            <div className="md:hidden flex items-center gap-6 mb-6">
-                <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-blue-500" />
-                    <span className="text-xs font-medium text-slate-500">Thu nhập</span>
-                </div>
-                <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-rose-500" />
-                    <span className="text-xs font-medium text-slate-500">Chi tiêu</span>
-                </div>
-            </div>
-
 
             {/* chart */}
             <div className="h-[300px] w-full">

@@ -9,6 +9,7 @@ interface CategorySectionProps {
     categories: CategoryInterface[];
     onDelete: (id: number) => void;
     onEdit: (cat: CategoryInterface) => void;
+    canChange?: boolean
 }
 
 export const CategorySection = ({
@@ -16,7 +17,8 @@ export const CategorySection = ({
     type,
     categories,
     onDelete,
-    onEdit
+    onEdit,
+    canChange = true
 }: CategorySectionProps) => {
     return (
         <div className="space-y-4">
@@ -31,20 +33,25 @@ export const CategorySection = ({
                         className="group flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-200 hover:border-blue-200 hover:shadow-md transition-all"
                     >
                         <span className="font-bold text-slate-700">{c.name}</span>
-                        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
-                            <button
-                                onClick={() => onEdit(c)}
-                                className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all cursor-pointer"
-                            >
-                                <Edit2 size={16} />
-                            </button>
-                            <button
-                                onClick={() => onDelete(c.id)}
-                                className="p-2 text-slate-300 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-all cursor-pointer"
-                            >
-                                <Trash2 size={16} />
-                            </button>
-                        </div>
+                        {canChange &&
+                            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
+                                <button
+                                    onClick={() => onEdit(c)}
+                                    className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all cursor-pointer"
+                                >
+                                    <Edit2 size={16} />
+                                </button>
+
+                                <button
+                                    onClick={() => onDelete(c.id)}
+                                    className="p-2 text-slate-300 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-all cursor-pointer"
+                                >
+                                    <Trash2 size={16} />
+                                </button>
+
+                            </div>
+                        }
+
                     </div>
                 ))}
                 {categories.length === 0 && (
