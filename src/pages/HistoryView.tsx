@@ -54,7 +54,6 @@ export const HistoryView = () => {
 
         const matchesType =
             historyFilter === "all" || t.type === historyFilter;
-        console.log(date, startDate, endDate);
         const matchesStart = !startDate || date >= startDate;
         const matchesEnd = !endDate || date <= endDate;
 

@@ -1,4 +1,4 @@
-import { subDays } from "date-fns";
+import { addDays } from "date-fns";
 import { forwardRef, useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -27,10 +27,15 @@ export const DateRangeTabs = ({ setRange }: any) => {
         const year = now.getFullYear();
 
         if (chartPeriod === "week") {
+            const dayOfWeek = now.getDay(); 
+            const diffToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek; 
+            const monday = addDays(now, diffToMonday);
+            const sunday = addDays(monday, 6);
+
             setRange({
                 type: "week",
-                startDate: subDays(now, 6),
-                endDate: now
+                startDate: monday,
+                endDate: sunday
             });
         }
 

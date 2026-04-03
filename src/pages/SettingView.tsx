@@ -35,9 +35,9 @@ export const SettingView = () => {
             title: 'Ứng dụng',
             items: [
                 {
-                    icon: theme === 'light' ? <Moon size={20} /> : <Sun size={20} />,
+                    icon: theme === 'dark' ? <Moon size={20} /> : <Sun size={20} />,
                     label: 'Giao diện',
-                    sublabel: theme === 'light' ? 'Chế độ tối' : 'Chế độ sáng',
+                    sublabel: theme === 'dark' ? 'Chế độ tối' : 'Chế độ sáng',
                     color: 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400',
                     onClick: toggleTheme,
                     isToggle: true
