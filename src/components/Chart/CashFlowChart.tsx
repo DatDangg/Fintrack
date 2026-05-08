@@ -1,5 +1,6 @@
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { formatCurrency } from "../../lib/utils";
+import { useTheme } from "../../contexts/ThemeContext";
 
 export interface CashFlowChartProps {
     data: {
@@ -12,6 +13,7 @@ export interface CashFlowChartProps {
 export const CashFlowChart = ({
     data,
 }: CashFlowChartProps) => {
+    const { theme } = useTheme();
 
     return (
         <div className="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 shadow-premium rounded-[24px] transition-all duration-300 p-8">
@@ -57,10 +59,9 @@ export const CashFlowChart = ({
                                 borderRadius: '16px', 
                                 border: 'none', 
                                 boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)',
-                                backgroundColor: 'var(--tooltip-bg, white)',
-                                color: 'var(--tooltip-text, inherit)'
+                                backgroundColor: theme === 'dark' ? '#1e293b' : 'white',
+                                color: theme === 'dark' ? '#f8fafc' : 'inherit'
                             }}
-                            className="dark:[--tooltip-bg:#1e293b] dark:[--tooltip-text:#f8fafc]"
                             formatter={(value: any, name: any) => {
                                 const labelMap: any = {
                                     Income: "Thu",
