@@ -80,7 +80,7 @@ export const HistoryView = () => {
             <div className="space-y-6">
                 {/* FILTER */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
-                    <div className="flex justify-center w-full items-center gap-3 p-1.5 bg-slate-200/50 rounded-[20px] md:w-fit">
+                    <div className="flex justify-center w-full items-center gap-3 p-1.5 bg-slate-200/50 dark:bg-slate-900/50 rounded-[20px] md:w-fit">
                         {["all", "income", "expense"].map((type) => (
                             <button
                                 key={type}
@@ -88,10 +88,10 @@ export const HistoryView = () => {
                                 className={twMerge(
                                     "px-6 py-2.5 rounded-xl text-sm font-bold transition-all cursor-pointer",
                                     historyFilter === type
-                                        ? type === "income" ? "bg-blue-100 text-blue-600 shadow-sm" :
-                                            type === "expense" ? "bg-rose-100 text-rose-600 shadow-sm" : "bg-white shadow-sm text-slate-900"
-                                        : type === "income" ? "hover:bg-blue-100 hover:text-blue-600 hover:shadow-sm" :
-                                            type === "expense" ? "hover:bg-rose-100 hover:text-rose-600 hover:shadow-sm" : "hover:bg-white hover:text-slate-900 hover:shadow-sm"
+                                        ? type === "income" ? "bg-blue-100 text-blue-600 shadow-sm dark:bg-blue-900/30 dark:text-blue-400" :
+                                            type === "expense" ? "bg-rose-100 text-rose-600 shadow-sm dark:bg-rose-900/30 dark:text-rose-400" : "bg-white shadow-sm text-slate-900 dark:bg-slate-800 dark:text-white"
+                                        : type === "income" ? "text-slate-500 hover:bg-blue-100 hover:text-blue-600 hover:shadow-sm dark:text-slate-400 dark:hover:bg-blue-900/20" :
+                                            type === "expense" ? "text-slate-500 hover:bg-rose-100 hover:text-rose-600 hover:shadow-sm dark:text-slate-400 dark:hover:bg-rose-900/20" : "text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
 
                                 )}
                             >
@@ -105,22 +105,22 @@ export const HistoryView = () => {
                     </div>
 
                     <div className="flex flex-wrap justify-center items-center gap-4">
-                        <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-2xl border border-slate-200">
+                        <div className="flex items-center gap-2 bg-white dark:bg-slate-900 px-4 py-2 rounded-2xl border border-slate-200 dark:border-slate-800">
 
                             <input
                                 type="date"
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
-                                className="text-sm font-bold bg-transparent outline-none"
+                                className="text-sm font-bold bg-transparent outline-none dark:text-white"
                             />
 
-                            <span className="text-slate-300">→</span>
+                            <span className="text-slate-300 dark:text-slate-600 text-xs">→</span>
 
                             <input
                                 type="date"
                                 value={endDate}
                                 onChange={(e) => setEndDate(e.target.value)}
-                                className="text-sm font-bold bg-transparent outline-none"
+                                className="text-sm font-bold bg-transparent outline-none dark:text-white"
                             />
 
                             {(startDate || endDate) && (
@@ -129,7 +129,7 @@ export const HistoryView = () => {
                                         setStartDate("");
                                         setEndDate("");
                                     }}
-                                    className="ml-2 p-1 hover:bg-slate-100 rounded-full cursor-pointer"
+                                    className="ml-2 p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full cursor-pointer dark:text-slate-400"
                                 >
                                     <X size={14} />
                                 </button>
@@ -143,13 +143,13 @@ export const HistoryView = () => {
                     {sortedDates.map((date) => (
                         <div key={date} className="space-y-4">
                             <div className="flex items-center gap-4">
-                                <div className="h-[1px] flex-1 bg-slate-200" />
-                                <div className="px-4 py-1.5 bg-slate-100 rounded-full text-[11px] font-black text-slate-500 uppercase tracking-[0.2em]">
+                                <div className="h-[1px] flex-1 bg-slate-200 dark:bg-slate-800" />
+                                <div className="px-4 py-1.5 bg-slate-100 dark:bg-slate-900 rounded-full text-[11px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-[0.2em]">
                                     {format(new Date(date), "EEEE, dd/MM/yyyy", {
                                         locale: vi,
                                     })}
                                 </div>
-                                <div className="h-[1px] flex-1 bg-slate-200" />
+                                <div className="h-[1px] flex-1 bg-slate-200 dark:bg-slate-800" />
                             </div>
 
                             <div className="space-y-3">
@@ -167,13 +167,13 @@ export const HistoryView = () => {
 
                     {sortedDates.length === 0 && (
                         <div className="text-center py-20">
-                            <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <History size={32} className="text-slate-300" />
+                            <div className="w-20 h-20 bg-slate-100 dark:bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <History size={32} className="text-slate-300 dark:text-slate-600" />
                             </div>
-                            <p className="text-slate-400 font-bold">
+                            <p className="text-slate-400 dark:text-slate-500 font-bold">
                                 Không tìm thấy giao dịch nào
                             </p>
-                            <p className="text-xs text-slate-300 mt-1">
+                            <p className="text-xs text-slate-300 dark:text-slate-600 mt-1">
                                 Thử thay đổi bộ lọc hoặc khoảng thời gian
                             </p>
                         </div>

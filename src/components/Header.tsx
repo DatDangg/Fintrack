@@ -46,19 +46,19 @@ export const Header = () => {
 
     return (
         <>
-            <header className="sticky top-0 z-30 bg-[#f8fafc]/80 backdrop-blur-xl border-b border-slate-200/60 border-none lg:bg-transparent lg:border-none">
+            <header className="sticky top-0 z-30 bg-[#f8fafc]/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200/60 border-none lg:bg-transparent lg:border-none transition-colors">
                 <div className="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
                     <div className="lg:hidden flex items-center gap-2">
                         <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                             <Wallet className="text-white w-5 h-5" />
                         </div>
-                        <span className="font-bold text-lg tracking-tight">FinTrack</span>
+                        <span className="font-bold text-lg tracking-tight dark:text-white">FinTrack</span>
                     </div>
                     <div className="hidden lg:block">
-                        <h2 className="text-2xl font-bold text-slate-900">
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                             {title}
                         </h2>
-                        <p className="text-sm text-slate-500">
+                        <p className="text-sm text-slate-500 dark:text-slate-400">
                             Hôm nay là{" "}
                             {format(new Date(), "EEEE, dd MMMM", {
                                 locale: vi,

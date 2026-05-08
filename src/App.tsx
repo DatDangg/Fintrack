@@ -18,10 +18,10 @@ function App() {
 
   if (loading || authLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 transition-colors">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin" />
-          <p className="text-slate-500 font-medium animate-pulse">Đang tải dữ liệu...</p>
+          <p className="text-slate-500 dark:text-slate-400 font-medium animate-pulse">Đang tải dữ liệu...</p>
         </div>
       </div>
     );
@@ -34,7 +34,7 @@ function App() {
 
   return (
 
-    <div className="bg-[#f8fafc] min-h-[100vh] pb-24 md:pb-8">
+    <div className="bg-[#f8fafc] dark:bg-slate-950 min-h-[100vh] pb-24 md:pb-8 transition-colors">
       <Sidebar />
       <MobileNav />
       <div className="lg:ml-64 transition-all duration-300">

@@ -50,8 +50,8 @@ export const CurrentTransaction = ({
         <>
             <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                    <h3 className="font-bold text-lg text-slate-900">Giao dịch gần đây</h3>
-                    <button onClick={() => { navigate("/history") }} className="text-sm font-semibold text-blue-600 flex items-center gap-1 hover:gap-2 transition-all cursor-pointer">
+                    <h3 className="font-bold text-lg text-slate-900 dark:text-white">Giao dịch gần đây</h3>
+                    <button onClick={() => { navigate("/history") }} className="text-sm font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1 hover:gap-2 transition-all cursor-pointer">
                         Xem tất cả <ArrowRight size={16} />
                     </button>
                 </div>

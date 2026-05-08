@@ -71,7 +71,7 @@ export const CategoryView = () => {
     return (
         <div className="space-y-8">
             <div className="flex items-center justify-between">
-                <h3 className="font-bold text-xl text-slate-900">
+                <h3 className="font-bold text-xl text-slate-900 dark:text-white">
                     Quản lý danh mục
                 </h3>
 
@@ -80,7 +80,7 @@ export const CategoryView = () => {
                         setSelectedCategory(null);
                         setShowModal(true);
                     }}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-xl text-sm font-bold hover:bg-blue-100 transition-all cursor-pointer"
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl text-sm font-bold hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-all cursor-pointer"
                 >
                     <Plus size={18} /> Thêm danh mục mới
                 </button>

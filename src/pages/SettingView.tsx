@@ -111,7 +111,7 @@ export const SettingView = () => {
                         <LogOut size={20} />
                         Đăng xuất
                     </button>
-                    <p className="text-center text-[10px] text-slate-400 dark:text-slate-600 mt-6 font-medium uppercase tracking-widest">
+                    <p className="text-center text-[10px] text-slate-400 dark:text-slate-500 mt-6 font-medium uppercase tracking-widest">
                         FinTrack &copy; 2026 &bull; Made with Love
                     </p>
                 </motion.div>

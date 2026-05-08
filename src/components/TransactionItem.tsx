@@ -29,24 +29,24 @@ export const TransactionItem = ({
             : (transaction.category_id === traNoid || transaction.category_id === choVayId) ? '-'
                 : '-';
     return (
-        <div className="group flex items-center justify-between p-5 bg-white rounded-[24px] border border-slate-200/60 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-500/5 transition-all">
+        <div className="group flex items-center justify-between p-5 bg-white dark:bg-slate-900/50 rounded-[24px] border border-slate-200/60 dark:border-white/5 hover:border-blue-200 dark:hover:border-blue-500/30 hover:shadow-xl hover:shadow-blue-500/5 transition-all">
             <div className="flex items-center gap-5" >
                 <div className={twMerge(
                     "w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110",
-                    transaction.type === 'income' ? "bg-blue-50 text-blue-600" : transaction.type === 'expense' ? "bg-rose-50 text-rose-600" : "bg-green-50 text-green-600"
+                    transaction.type === 'income' ? "bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400" : transaction.type === 'expense' ? "bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400" : "bg-green-50 text-green-600 dark:bg-green-500/10 dark:text-green-400"
                 )}>
                     {transaction.type === 'income' ? <ArrowUpRight size={24} /> : transaction.type === 'expense' ? <ArrowDownLeft size={24} /> : <ArrowUpDown size={24} />}
                 </div>
                 <div>
-                    <div className="font-extrabold text-slate-900 text-lg">{category?.name}</div>
-                    <div className="text-xs text-slate-400 font-bold flex items-center gap-2 mt-0.5">
+                    <div className="font-extrabold text-slate-900 dark:text-white text-lg">{category?.name}</div>
+                    <div className="text-xs text-slate-400 dark:text-slate-500 font-bold flex items-center gap-2 mt-0.5">
                         <span className="flex items-center gap-1">
                             <Calendar size={12} />
                             {format(transaction.date, 'dd/MM/yyyy')}
                         </span>
                         {transaction.description && (
                             <div className='hidden md:block'>
-                                <span className="w-1 h-1 bg-slate-200 rounded-full" />
+                                <span className="w-1 h-1 bg-slate-200 dark:bg-slate-800 rounded-full" />
                                 <span className="truncate max-w-[120px]">{transaction.description}</span>
                             </div>
                         )}
@@ -56,15 +56,15 @@ export const TransactionItem = ({
             <div className="flex items-center gap-2">
                 <div className={twMerge(
                     "text-xl font-black tracking-tight",
-                    transaction.type === 'income' ? "text-blue-600" : transaction.type === 'expense' ? "text-rose-600" : "text-green-600"
+                    transaction.type === 'income' ? "text-blue-600 dark:text-blue-400" : transaction.type === 'expense' ? "text-rose-600 dark:text-rose-400" : "text-green-600 dark:text-green-400"
                 )}>
                     {sign}{formatCurrency(transaction.amount)}
                 </div>
                 <button
                     onClick={() => onDelete(transaction.id)}
                     className={twMerge(
-                        "p-2 text-slate-300  rounded-xl transition-all opacity-0 group-hover:opacity-100 cursor-pointer",
-                        transaction.type === 'income' ? "hover:text-blue-500 hover:bg-blue-50" : transaction.type === 'expense' ? "hover:text-rose-500 hover:bg-rose-50" : "hover:text-green-500 hover:bg-green-50"
+                        "p-2 text-slate-300 dark:text-slate-700 rounded-xl transition-all opacity-0 group-hover:opacity-100 cursor-pointer",
+                        transaction.type === 'income' ? "hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30" : transaction.type === 'expense' ? "hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30" : "hover:text-green-500 hover:bg-green-50 dark:hover:bg-green-900/30"
                     )}
                 >
                     <Trash2 size={18} />

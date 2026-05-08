@@ -14,10 +14,10 @@ export const CashFlowChart = ({
 }: CashFlowChartProps) => {
 
     return (
-        <div className="bg-white border border-slate-200/60 shadow-premium rounded-[24px] transition-all duration-300 p-8">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 shadow-premium rounded-[24px] transition-all duration-300 p-8">
             <div className="md:mb-8 mb-4">
-                    <h3 className="font-bold text-lg text-slate-900">Biểu đồ dòng tiền</h3>
-                    <p className="text-xs text-slate-400">Trực quan hóa thu chi</p>
+                    <h3 className="font-bold text-lg text-slate-900 dark:text-white">Biểu đồ dòng tiền</h3>
+                    <p className="text-xs text-slate-400 dark:text-slate-500">Trực quan hóa thu chi</p>
             </div>
 
             {/* chart */}
@@ -34,7 +34,7 @@ export const CashFlowChart = ({
                                 <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
                             </linearGradient>
                         </defs>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" className="dark:opacity-[0.05]" />
                         <XAxis
                             dataKey="name"
                             axisLine={false}
@@ -53,7 +53,14 @@ export const CashFlowChart = ({
                             tickFormatter={(value) => `${value / 1000}k`}
                         />
                         <Tooltip
-                            contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)' }}
+                            contentStyle={{ 
+                                borderRadius: '16px', 
+                                border: 'none', 
+                                boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)',
+                                backgroundColor: 'var(--tooltip-bg, white)',
+                                color: 'var(--tooltip-text, inherit)'
+                            }}
+                            className="dark:[--tooltip-bg:#1e293b] dark:[--tooltip-text:#f8fafc]"
                             formatter={(value: any, name: any) => {
                                 const labelMap: any = {
                                     Income: "Thu",

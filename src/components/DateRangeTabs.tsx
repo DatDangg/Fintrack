@@ -71,15 +71,15 @@ export const DateRangeTabs = ({ setRange }: any) => {
     return (
         <div className="flex items-center justify-between mb-2">
             <div className="flex flex-wrap items-center gap-3">
-                <div className="flex p-1 bg-slate-100 rounded-xl">
+                <div className="flex p-1 bg-slate-100 dark:bg-slate-900 rounded-xl">
                     {(['week', 'month', 'year', 'custom'] as const).map((p) => (
                         <button
                             key={p}
                             onClick={() => setChartPeriod(p)}
                             className={`px-3 py-1.5 text-[10px] font-bold uppercase rounded-lg cursor-pointer
                         ${chartPeriod === p
-                                    ? 'bg-white text-blue-600 shadow-sm'
-                                    : 'text-slate-500'
+                                    ? 'bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 shadow-sm'
+                                    : 'text-slate-500 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
                                 }`}
                         >
                             {p === 'week' ? 'Tuần' :
@@ -94,14 +94,14 @@ export const DateRangeTabs = ({ setRange }: any) => {
                             type="date"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
-                            className="text-[10px] font-bold bg-white border border-slate-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500/20"
+                            className="text-[10px] font-bold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 dark:text-white rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500/20"
                         />
-                        <span className="text-slate-300 text-xs">→</span>
+                        <span className="text-slate-300 dark:text-slate-600 text-xs">→</span>
                         <input
                             type="date"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
-                            className="text-[10px] font-bold bg-white border border-slate-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500/20"
+                            className="text-[10px] font-bold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 dark:text-white rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500/20"
                         />
                     </div>
                 )}

@@ -26,28 +26,20 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     const color = isUp ? "#16a34a" : "#dc2626";
 
     return (
-        <div style={{
-            background: "white",
-            border: "0.5px solid rgba(0,0,0,0.08)",
-            borderRadius: 14,
-            padding: "12px 16px",
-            fontSize: 12,
-            minWidth: 190,
-            boxShadow: "0 8px 24px rgba(0,0,0,0.10)",
-        }}>
-            <p style={{ margin: "0 0 8px", fontSize: 11, color: "#94a3b8", fontWeight: 600 }}>{label}</p>
+        <div className="bg-white dark:bg-slate-800 border border-black/10 dark:border-white/10 rounded-[14px] p-3 text-xs min-w-[190px] shadow-xl">
+            <p className="m-0 mb-2 text-[11px] text-slate-400 dark:text-slate-500 font-bold uppercase">{label}</p>
             {[
                 ["Thu nhập", formatCurrency(d.Income), "#16a34a"],
                 ["Chi tiêu", formatCurrency(d.Expense), "#dc2626"],
             ].map(([lbl, val, c]) => (
-                <div key={lbl as string} style={{ display: "flex", justifyContent: "space-between", gap: 16, margin: "3px 0" }}>
-                    <span style={{ color: "#94a3b8" }}>{lbl}</span>
-                    <span style={{ color: c as string, fontWeight: 600 }}>{val}</span>
+                <div key={lbl as string} className="flex justify-between gap-4 my-1">
+                    <span className="text-slate-400 dark:text-slate-500">{lbl}</span>
+                    <span style={{ color: c as string }} className="font-bold">{val}</span>
                 </div>
             ))}
-            <div style={{ marginTop: 8, paddingTop: 8, borderTop: "0.5px solid rgba(0,0,0,0.06)", display: "flex", justifyContent: "space-between" }}>
-                <span style={{ color: "#94a3b8" }}>Dòng tiền ròng</span>
-                <span style={{ color, fontWeight: 700 }}>
+            <div className="mt-2 pt-2 border-t border-black/5 dark:border-white/5 flex justify-between">
+                <span className="text-slate-400 dark:text-slate-500">Dòng tiền ròng</span>
+                <span style={{ color }} className="font-bold">
                     {isUp ? "▲ +" : "▼ "}{formatCurrency(Math.abs(d.netFlow))}
                 </span>
             </div>
@@ -79,11 +71,11 @@ export const CashSummaryChart = ({ data }: CashSummaryChartProps) => {
     const zeroPct = zeroPercent(yMin, yMax);
 
     return (
-        <div className="bg-white border border-slate-200/60 shadow-premium rounded-[24px] transition-all duration-300 p-8">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 shadow-premium rounded-[24px] transition-all duration-300 p-8">
             {/* Header — title only */}
             <div className="md:mb-8 mb-4">
-                <h3 className="font-bold text-lg text-slate-900">Biểu đồ thu nhập</h3>
-                <p className="text-xs text-slate-400">Dòng tiền ròng (Thu nhập − Chi tiêu)</p>
+                <h3 className="font-bold text-lg text-slate-900 dark:text-white">Biểu đồ thu nhập</h3>
+                <p className="text-xs text-slate-400 dark:text-slate-500">Dòng tiền ròng (Thu nhập − Chi tiêu)</p>
             </div>
 
             {/* Main chart */}
@@ -103,7 +95,7 @@ export const CashSummaryChart = ({ data }: CashSummaryChartProps) => {
                             </linearGradient>
                         </defs>
 
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" className="dark:opacity-[0.05]" />
                         <XAxis
                             dataKey="name"
                             axisLine={false}

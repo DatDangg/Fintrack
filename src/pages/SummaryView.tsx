@@ -206,7 +206,7 @@ export const SummaryView = () => {
     const expenseData = categories
         .filter((c: CategoryInterface) => c.type === "expense")
         .map((c: CategoryInterface) => {
-            const total = transactions
+            const total = filteredTransactions
                 .filter(
                     (t: TransactionInterface) =>
                         t.type === "expense" &&
@@ -227,8 +227,8 @@ export const SummaryView = () => {
         <div>
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="mb-2">
-                    <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">Tổng quan</h2>
-                    <p className="text-sm text-slate-500">
+                    <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">Tổng quan</h2>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">
                         Dữ liệu tài chính từ {" "}
                         <span className="font-bold">{format(range.startDate, "dd/MM/yyyy")}</span>
                         {" "} đến {" "}
@@ -265,7 +265,7 @@ export const SummaryView = () => {
                 </div>
 
                 <div className="md:pt-8 md:pb-0 pb-8 pt-2 order-1 relative">
-                    <ArrowLeftRight size={24} className="text-gray-500 mb-2 absolute top-16 right-8 cursor-pointer" onClick={() => setIsCashFlow(prev => !prev)} />
+                    <ArrowLeftRight size={24} className="text-gray-500 dark:text-slate-400 mb-2 absolute top-16 right-8 cursor-pointer hover:text-blue-500 dark:hover:text-blue-400 transition-colors" onClick={() => setIsCashFlow(prev => !prev)} />
                     {isCashFlow ? <CashFlowChart data={chartData} /> : <CashSummaryChart data={chartData} />}
                 </div>
             </div>
