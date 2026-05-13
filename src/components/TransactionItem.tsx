@@ -29,16 +29,16 @@ export const TransactionItem = ({
             : (transaction.category_id === traNoid || transaction.category_id === choVayId) ? '-'
                 : '-';
     return (
-        <div className="group flex items-center justify-between p-5 bg-white dark:bg-slate-900/50 rounded-[24px] border border-slate-200/60 dark:border-white/5 hover:border-blue-200 dark:hover:border-blue-500/30 hover:shadow-xl hover:shadow-blue-500/5 transition-all">
-            <div className="flex items-center gap-5" >
+        <div className="group flex items-center justify-between p-4 md:p-5 bg-white dark:bg-slate-900/50 rounded-[24px] border border-slate-200/60 dark:border-white/5 hover:border-blue-200 dark:hover:border-blue-500/30 hover:shadow-xl hover:shadow-blue-500/5 transition-all">
+            <div className="flex items-center gap-3 md:gap-5 min-w-0" >
                 <div className={twMerge(
-                    "w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110",
+                    "w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center transition-transform flex-shrink-0 group-hover:scale-110",
                     transaction.type === 'income' ? "bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400" : transaction.type === 'expense' ? "bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400" : "bg-green-50 text-green-600 dark:bg-green-500/10 dark:text-green-400"
                 )}>
-                    {transaction.type === 'income' ? <ArrowUpRight size={24} /> : transaction.type === 'expense' ? <ArrowDownLeft size={24} /> : <ArrowUpDown size={24} />}
+                    {transaction.type === 'income' ? <ArrowUpRight size={20} className="md:w-6 md:h-6" /> : transaction.type === 'expense' ? <ArrowDownLeft size={20} className="md:w-6 md:h-6" /> : <ArrowUpDown size={20} className="md:w-6 md:h-6" />}
                 </div>
-                <div>
-                    <div className="font-extrabold text-slate-900 dark:text-white text-lg">{category?.name}</div>
+                <div className="min-w-0">
+                    <div className="font-extrabold text-slate-900 dark:text-white text-base md:text-lg truncate">{category?.name}</div>
                     <div className="text-xs text-slate-400 dark:text-slate-500 font-bold flex items-center gap-2 mt-0.5">
                         <span className="flex items-center gap-1">
                             <Calendar size={12} />
@@ -53,9 +53,9 @@ export const TransactionItem = ({
                     </div>
                 </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 md:gap-2 ml-2 flex-shrink-0">
                 <div className={twMerge(
-                    "text-xl font-black tracking-tight",
+                    "text-lg md:text-xl font-black tracking-tight whitespace-nowrap",
                     transaction.type === 'income' ? "text-blue-600 dark:text-blue-400" : transaction.type === 'expense' ? "text-rose-600 dark:text-rose-400" : "text-green-600 dark:text-green-400"
                 )}>
                     {sign}{formatCurrency(transaction.amount)}
@@ -63,11 +63,11 @@ export const TransactionItem = ({
                 <button
                     onClick={() => onDelete(transaction.id)}
                     className={twMerge(
-                        "p-2 text-slate-300 dark:text-slate-700 rounded-xl transition-all opacity-0 group-hover:opacity-100 cursor-pointer",
+                        "p-1.5 md:p-2 text-slate-400 dark:text-slate-600 rounded-xl transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 cursor-pointer",
                         transaction.type === 'income' ? "hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30" : transaction.type === 'expense' ? "hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30" : "hover:text-green-500 hover:bg-green-50 dark:hover:bg-green-900/30"
                     )}
                 >
-                    <Trash2 size={18} />
+                    <Trash2 size={16} className="md:w-[18px] md:h-[18px]" />
                 </button>
             </div>
         </div >

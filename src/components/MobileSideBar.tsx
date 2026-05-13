@@ -9,7 +9,7 @@ export const MobileNav = () => {
             : "text-slate-400 hover:text-slate-600"
         }`;
     return (
-        <nav className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-slate-200 lg:hidden z-40 px-6 py-3 flex items-center justify-between">
+        <nav className="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-200 dark:border-white/10 lg:hidden z-40 px-6 py-3 flex items-center justify-between">
             <NavLink to="/" end className={mobileNavClass}>
                 <LayoutDashboard size={24} />
                 <span>Tổng quan</span>

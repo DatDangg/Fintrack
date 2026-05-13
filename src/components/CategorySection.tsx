@@ -34,7 +34,7 @@ export const CategorySection = ({
                     >
                         <span className="font-bold text-slate-700 dark:text-slate-300">{c.name}</span>
                         {canChange &&
-                            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
+                            <div className="flex items-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all">
                                 <button
                                     onClick={() => onEdit(c)}
                                     className="p-2 text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-xl transition-all cursor-pointer"
