@@ -11,10 +11,13 @@ import { AuthScreen } from "./components/AuthScreen";
 import { useAuth } from "./contexts/AuthContext";
 import { MobileNav } from "./components/MobileSideBar";
 import { SettingView } from "./pages/SettingView";
+import { ToastContainer } from "react-toastify";
+import { useTheme } from "./contexts/ThemeContext";
 
 function App() {
   const { loading } = useFinance();
   const { user, isLoading: authLoading } = useAuth();
+  const { theme } = useTheme();
 
   if (loading || authLoading) {
     return (
@@ -35,6 +38,7 @@ function App() {
   return (
 
     <div className="bg-[#f8fafc] dark:bg-slate-950 min-h-[100vh] pb-24 md:pb-8 transition-colors">
+      <ToastContainer position="top-right" theme={theme} />
       <Sidebar />
       <MobileNav />
       <div className="lg:ml-64 transition-all duration-300">
